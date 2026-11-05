@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Precio de juegos en Argentina con impuestos | A la mano</title>
+<meta name="description" content="Calculá cuánto te sale un juego de Steam, PlayStation, Xbox o Nintendo en Argentina: precio en dólares + IVA 21% + Ingresos Brutos de tu provincia.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@500;600;700&family=Unbounded:wght@600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="index.html">a la <span>mano</span></a><nav class="nav" aria-label="Países"><a href="index.html">Inicio</a><a href="argentina.html" aria-current="page">Argentina</a><a href="mexico.html">México</a></nav></div></header>
+<main data-page="ar">
+  <div class="wrap hero">
+    <p class="eyebrow">Argentina · Steam, PlayStation, Xbox, Nintendo, Epic</p>
+    <h1>¿Cuánto te sale <em>de verdad</em> ese juego?</h1>
+    <p class="lead">Poné el precio en dólares y elegí tu provincia. Te mostramos cada impuesto como aparece en el resumen de la tarjeta.</p>
+  </div>
+
+  <div class="wrap calc">
+    <form class="panel" onsubmit="return false" aria-label="Datos de la compra">
+      <div class="field">
+        <label for="ar-usd">Precio del juego</label>
+        <div class="money"><span>USD</span><input id="ar-usd" inputmode="decimal" autocomplete="off" value="59.99"></div>
+        <div class="chips" aria-label="Precios comunes">
+          <button type="button" class="chip" data-usd="4.99">4,99</button>
+          <button type="button" class="chip" data-usd="9.99">9,99</button>
+          <button type="button" class="chip" data-usd="19.99">19,99</button>
+          <button type="button" class="chip" data-usd="29.99">29,99</button>
+          <button type="button" class="chip" data-usd="59.99">59,99</button>
+          <button type="button" class="chip" data-usd="69.99">69,99</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="ar-prov">Tu provincia</label>
+        <select id="ar-prov">
+          <option value="2">Ciudad de Buenos Aires (IIBB 2%)</option>
+          <option value="2">Provincia de Buenos Aires (IIBB 2%)</option>
+          <option value="4.5">Santa Fe (IIBB 4,5%)</option>
+          <option value="otra">Otra provincia (cargo el %)</option>
+          <option value="0">Mi provincia no cobra IIBB</option>
+        </select>
+        <div class="field" id="ar-other-wrap" hidden>
+          <label for="ar-other">Percepción de Ingresos Brutos de tu provincia (%)</label>
+          <input id="ar-other" class="small-input" inputmode="decimal" value="0">
+          <p class="hint">Va de 0% a 5,5% según la provincia. Si no lo sabés, buscá "Percepción IIBB" en tu último resumen.</p>
+        </div>
+      </div>
+
+      <label class="check" for="ar-sellos">
+        <input type="checkbox" id="ar-sellos">
+        <span>Pago con tarjeta de crédito y mi provincia cobra Impuesto de Sellos (1,2%)</span>
+      </label>
+
+      <div class="field">
+        <label for="ar-rate">Dólar oficial (venta)</label>
+        <div class="money"><span>ARS</span><input id="ar-rate" inputmode="decimal" autocomplete="off" value="1520"></div>
+        <p class="rate-status" id="ar-rate-status">Valor de referencia (agosto 2026). Cambialo por el del día si hace falta.</p>
+      </div>
+    </form>
+
+    <div class="receipt" aria-live="polite">
+      <h2>Así lo vas a ver en tu resumen</h2>
+      <div class="row"><span class="k">Juego (USD × dólar oficial)</span><span class="v" id="ar-o-base">—</span></div>
+      <div class="row tax"><span class="k">IVA servicios digitales 21%</span><span class="v" id="ar-o-iva">—</span></div>
+      <div class="row tax"><span class="k" id="ar-o-iibb-k">Percepción IIBB</span><span class="v" id="ar-o-iibb">—</span></div>
+      <div class="row tax" id="ar-row-sellos" hidden><span class="k">Impuesto de Sellos 1,2%</span><span class="v" id="ar-o-sellos">—</span></div>
+      <div class="rule"></div>
+      <div class="total"><span class="k">Total en pesos</span><span class="v" id="ar-o-total">—</span></div>
+      <p class="per">Cada dólar te sale <b id="ar-o-per">—</b> · pagás <b id="ar-o-pct">—</b> de impuestos sobre el precio</p>
+      <p class="disclaimer">Valor estimado. El total final depende de la cotización del día en que cierra tu tarjeta.</p>
+    </div>
+  </div>
+
+  <div class="wrap content">
+    <section>
+      <h2 class="sec">Qué impuestos pagás hoy</h2>
+      <ul class="taxlist">
+        <li><span class="pct">21%</span><span><b>IVA a servicios digitales.</b> Se aplica a todas las tiendas de juegos del exterior. En el resumen figura como "IVA RG 4240".</span></li>
+        <li><span class="pct">0–5,5%</span><span><b>Percepción de Ingresos Brutos.</b> La cobra tu provincia, no la tienda: 2% en CABA y Provincia de Buenos Aires, 4,5% en Santa Fe para servicios digitales.</span></li>
+        <li><span class="pct">1,2%</span><span><b>Impuesto de Sellos.</b> Algunas provincias lo cobran sobre el total del resumen de la tarjeta de crédito. Con débito no aplica.</span></li>
+        <li><span class="pct off">30%</span><span><b>Percepción de Ganancias: ya no se cobra en juegos.</b> Desde 2025 las plataformas de gaming quedaron excluidas. Muchas calculadoras todavía la suman.</span></li>
+        <li><span class="pct off">30%</span><span><b>Impuesto PAIS: derogado</b> el 23 de diciembre de 2024.</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="sec">Cómo se calcula</h2>
+      <p>Se toma el precio en dólares y se pasa a pesos con el dólar oficial. Sobre ese monto se suma el 21% de IVA y la percepción de Ingresos Brutos de tu provincia. Si pagás con crédito en una provincia que cobra Sellos, se agrega 1,2% sobre el total.</p>
+      <p>Ejemplo: un juego de USD 59,99 con dólar a $1.520 en CABA queda en $ 91.185 + $ 19.149 de IVA + $ 1.824 de IIBB = <b>$ 112.157</b>.</p>
+    </section>
+
+    <section>
+      <h2 class="sec">Preguntas frecuentes</h2>
+      <details><summary>¿Steam me muestra el precio con impuestos?</summary><p>No. Steam muestra el precio en dólares sin los impuestos argentinos; el IVA y las percepciones aparecen después en el resumen de tu tarjeta.</p></details>
+      <details><summary>¿Vale para PlayStation, Xbox y Nintendo?</summary><p>Sí. Todas las tiendas digitales del exterior tienen el mismo IVA del 21% y la percepción de tu provincia. Lo que cambia es el precio de cada juego en cada tienda.</p></details>
+      <details><summary>¿Y si pago con dólares de mi cuenta?</summary><p>Te evitás la conversión al dólar oficial, pero el IVA del 21% y la percepción provincial se cobran igual.</p></details>
+      <details><summary>¿Puedo recuperar la percepción de Ingresos Brutos?</summary><p>Algunas provincias, como Santa Fe, permiten pedir la devolución o usarla como crédito para otros impuestos. Consultá en la agencia de recaudación de tu provincia.</p></details>
+    </section>
+
+    <p class="updated">Tasas revisadas el 4 de noviembre de 2026. Fuentes: ARCA (RG 4240/2018 y RG 5672/2025), API Santa Fe y agencias provinciales.</p>
+  </div>
+</main>
+<footer><div class="wrap"><span>A la mano · Calculadoras de precios de juegos</span><span>Los valores son estimados. Verificá el total en tu resumen.</span></div></footer><script src="app.js"></script>
+</body>
+</html>

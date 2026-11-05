@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Precio de juegos en México con IVA | A la mano</title>
+<meta name="description" content="Calcula cuánto pagas realmente por un juego en México: el IVA del 16% que ya incluye el precio, o la conversión y comisión si la tienda cobra en dólares.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@500;600;700&family=Unbounded:wght@600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="index.html">a la <span>mano</span></a><nav class="nav" aria-label="Países"><a href="index.html">Inicio</a><a href="argentina.html">Argentina</a><a href="mexico.html" aria-current="page">México</a></nav></div></header>
+<main data-page="mx">
+  <div class="wrap hero">
+    <p class="eyebrow">México · Steam, PlayStation, Xbox, Nintendo, Epic</p>
+    <h1>¿Cuánto pagas <em>de verdad</em> por ese juego?</h1>
+    <p class="lead">Si el precio está en pesos, ya trae IVA: te mostramos cuánto es. Si la tienda cobra en dólares, te calculamos la conversión y la comisión de tu banco.</p>
+  </div>
+
+  <div class="wrap calc">
+    <form class="panel" onsubmit="return false" aria-label="Datos de la compra">
+      <div class="field">
+        <span class="label" id="mx-mode-label">¿En qué moneda ves el precio?</span>
+        <div class="seg" role="group" aria-labelledby="mx-mode-label">
+          <button type="button" id="mx-mode-mxn" aria-pressed="true">Pesos (MXN)</button>
+          <button type="button" id="mx-mode-usd" aria-pressed="false">Dólares (USD)</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="mx-amount">Precio del juego</label>
+        <div class="money"><span id="mx-cur">MXN</span><input id="mx-amount" inputmode="decimal" autocomplete="off" value="999"></div>
+        <div class="chips" aria-label="Precios comunes en pesos">
+          <button type="button" class="chip" data-mxn="199">199</button>
+          <button type="button" class="chip" data-mxn="499">499</button>
+          <button type="button" class="chip" data-mxn="999">999</button>
+          <button type="button" class="chip" data-mxn="1399">1.399</button>
+          <button type="button" class="chip" data-mxn="1699">1.699</button>
+        </div>
+      </div>
+
+      <div id="mx-usd-fields" hidden>
+        <div class="field">
+          <label for="mx-rate">Tipo de cambio (pesos por dólar)</label>
+          <div class="money"><span>MXN</span><input id="mx-rate" inputmode="decimal" autocomplete="off" value="18.50"></div>
+          <p class="rate-status" id="mx-rate-status">Valor de ejemplo. Cámbialo por el del día.</p>
+        </div>
+        <div class="field">
+          <label for="mx-fee">Comisión de tu banco por compra en el extranjero (%)</label>
+          <input id="mx-fee" class="small-input" inputmode="decimal" value="0">
+          <p class="hint">Muchas tarjetas cobran una comisión por compras en otra moneda. Revisa el porcentaje en tu contrato o estado de cuenta.</p>
+        </div>
+      </div>
+    </form>
+
+    <div class="receipt" aria-live="polite">
+      <h2>Desglose de tu compra</h2>
+      <div id="mx-mxn-rows">
+        <div class="row"><span class="k">Precio sin IVA</span><span class="v" id="mx-o-base">—</span></div>
+        <div class="row tax"><span class="k">IVA 16% (ya incluido)</span><span class="v" id="mx-o-iva">—</span></div>
+      </div>
+      <div id="mx-usd-rows" hidden>
+        <div class="row"><span class="k">Precio convertido a pesos</span><span class="v" id="mx-o-conv">—</span></div>
+        <div class="row tax"><span class="k" id="mx-o-fee-k">Comisión del banco</span><span class="v" id="mx-o-fee">—</span></div>
+      </div>
+      <div class="rule"></div>
+      <div class="total"><span class="k">Total que pagas</span><span class="v" id="mx-o-total">—</span></div>
+      <p class="per" id="mx-o-note">—</p>
+      <p class="disclaimer">Valor estimado. El cargo final depende del tipo de cambio que aplique tu banco.</p>
+    </div>
+  </div>
+
+  <div class="wrap content">
+    <section>
+      <h2 class="sec">Qué impuestos pagas en México</h2>
+      <ul class="taxlist">
+        <li><span class="pct">16%</span><span><b>IVA a servicios digitales.</b> Desde junio de 2020 las tiendas extranjeras lo cobran a usuarios en México. En Steam y PlayStation Store el precio en pesos ya lo incluye.</span></li>
+        <li><span class="pct">Varía</span><span><b>Comisión por compra en el extranjero.</b> No es un impuesto: la cobra tu banco cuando la tienda carga en dólares. Varía según la tarjeta.</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="sec">Cómo se calcula</h2>
+      <p>Si el precio está en pesos, el IVA ya viene adentro: precio ÷ 1,16 te da el valor sin impuesto, y la diferencia es el IVA. Si la tienda cobra en dólares, se multiplica por el tipo de cambio y se suma la comisión de tu banco.</p>
+      <p>Ejemplo: un juego de $ 999 MXN tiene $ 861,21 de precio y <b>$ 137,79 de IVA</b>.</p>
+    </section>
+
+    <section>
+      <h2 class="sec">Preguntas frecuentes</h2>
+      <details><summary>¿Steam cobra IVA en México?</summary><p>Sí. Desde 2020 los precios de Steam para México incluyen IVA. Cada editor decide si absorbe el impuesto o sube el precio.</p></details>
+      <details><summary>¿Conviene pagar en pesos o en dólares?</summary><p>Si la tienda te deja pagar en pesos, normalmente evitas la comisión por compra en el extranjero. Compara el total de ambas opciones con esta calculadora.</p></details>
+      <details><summary>¿Pagar en OXXO tiene costo extra?</summary><p>Algunos intermediarios cobran una comisión por pago en efectivo. Revisa el total antes de confirmar.</p></details>
+    </section>
+
+    <p class="updated">Tasas revisadas el 4 de noviembre de 2026. Fuente: SAT, régimen de IVA a servicios digitales (vigente desde junio de 2020).</p>
+  </div>
+</main>
+<footer><div class="wrap"><span>A la mano · Calculadoras de precios de juegos</span><span>Los valores son estimados. Verificá el total en tu resumen.</span></div></footer><script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A la mano</title>
+<meta name="description" content="Calculá cuánto te sale realmente un juego en tu país: impuestos, tipo de cambio y recargos, sin sorpresas en el resumen de la tarjeta.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=JetBrains+Mono:wght@500;600;700&family=Unbounded:wght@600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="index.html">a la <span>mano</span></a><nav class="nav" aria-label="Países"><a href="index.html" aria-current="page">Inicio</a><a href="argentina.html">Argentina</a><a href="mexico.html">México</a></nav></div></header>
+<main>
+  <div class="wrap hero">
+    <p class="eyebrow">Precios reales de juegos en Latinoamérica</p>
+    <h1>El precio de la tienda <em>no es</em> lo que pagás.</h1>
+    <p class="lead">Impuestos, tipo de cambio y recargos del banco cambian según tu país. Elegí el tuyo y calculá el total antes de comprar.</p>
+  </div>
+
+  <div class="wrap countries">
+    <a class="country" href="argentina.html">
+      <span class="code">AR · USD → ARS</span>
+      <h2>Argentina</h2>
+      <p>IVA 21% + Ingresos Brutos de tu provincia, con el dólar oficial del día.</p>
+      <span class="go">Calcular →</span>
+    </a>
+    <a class="country" href="mexico.html">
+      <span class="code">MX · MXN / USD</span>
+      <h2>México</h2>
+      <p>Cuánto IVA trae el precio y cuánto suma tu banco si la tienda cobra en dólares.</p>
+      <span class="go">Calcular →</span>
+    </a>
+    <div class="country soon" aria-disabled="true">
+      <span class="code">CL · CO · PE</span>
+      <h2>Chile, Colombia y Perú</h2>
+      <p>Próximamente.</p>
+    </div>
+  </div>
+
+  <div class="wrap content">
+    <section>
+      <h2 class="sec">Cómo funciona</h2>
+      <ol class="steps">
+        <li>Elegís tu país y ponés el precio que ves en Steam, PlayStation, Xbox, Nintendo o Epic.</li>
+        <li>Sumamos los impuestos vigentes y el tipo de cambio del día.</li>
+        <li>Ves el total desglosado, igual que en el resumen de tu tarjeta.</li>
+      </ol>
+    </section>
+    <p class="updated">Tasas revisadas el 4 de noviembre de 2026.</p>
+  </div>
+</main>
+<footer><div class="wrap"><span>A la mano · Calculadoras de precios de juegos</span><span>Los valores son estimados. Verificá el total en tu resumen.</span></div></footer><script src="app.js"></script>
+</body>
+</html>

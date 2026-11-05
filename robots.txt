@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alamano.pages.dev/sitemap.xml
